@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{padding: 0;margin:0;}
+        .box{position: relative}
+        .box span{
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            position: absolute;
+            /*display: inline-block;*/
+            border: 1px solid #000;
+            margin: 2px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+
+</div>
+<script>
+    var str='';
+    var oBox=document.querySelector('.box');
+    var colors = ['#78cc64', '#58cd7e', '#4fcdad', '#4cc7dd', '#469ee8', '#465de8', '#5846e8', '#8346e8', '#9e46e8'];
+    //			for(var i=1;i<10;i++){
+    //			    for(var j=1;j<=i;j++){
+    //					str+=`<span style="background: ${colors[i-1]};top:${((i-1)*44)}px;left:${((j-1)*104)}px">${j} x ${i}=${i*j}</span>`;
+    //				}
+    //			}
+    for(var i=9;i>0;i--){
+        for(var j=1;j<=i;j++){
+            str+=`<span style="background: ${colors[i-1]};top:${(9-i)*44}px;left:${(j-1)*104}px;">${j} x ${i}= ${i*j}</span>`;
+        }
+    }
+    oBox.innerHTML=str;
+
+//    for (var i=5;i>=1;i--) {
+//        str='';
+//        for (var j=i;j>=1;j--) {
+//
+//            str+=j;
+//        }
+//        console.log(str)
+//
+//    }
+
+
+ </script>
+</body>
+</html>

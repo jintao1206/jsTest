@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>自动选项卡</title>
+    <style>
+        li {
+            list-style: none;
+            cursor: pointer;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrap {
+            height: 800px;
+            width: 1200px;
+            overflow: hidden;
+            margin: 0 auto;
+            background-image: url(./images/bg.png);
+            background-repeat: no-repeat;
+        }
+
+        #box {
+            height: 397px;
+            width: 800px;
+            overflow: hidden;
+            margin: 0 auto;
+            margin-top: 228px;
+            background: #ffb746;
+        }
+
+        #box>ul {
+            width: 100%;
+            height: 60px;
+            display: flex;
+        }
+
+        #box>ul li {
+            line-height: 60px;
+            flex: 1;
+            text-align: center;
+            background-color: #fff;
+            color: #000;
+        }
+
+        #box>ul .active {
+            background-color: #ffb746;
+            color: #fff;
+        }
+
+        #box div {
+            width: 70%;
+            height: 60%;
+            margin: 40px auto;
+            display: none;
+            position: relative;
+        }
+
+        #box img {
+            width: 250px;
+            height: auto;
+        }
+
+        #box div ul {
+            position: absolute;
+            top: 0;
+            left: 250px;
+        }
+
+        #box div li {
+            color: white;
+            text-align: left;
+            padding: 20px 40px;
+        }
+
+        #box div .active {
+            background-color: #fff;
+            color: #000;
+        }
+
+        #box img {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+<div class="wrap">
+    <div id="box">
+        <ul class="navs">
+            <li class="active">暖色调</li>
+            <li>金色夕阳</li>
+            <li>灰色格调</li>
+            <li>baby</li>
+        </ul>
+        <div style="display: block;">
+            <img src="images/1.png" style="display: block">
+            <img src="images/2.png">
+            <img src="images/3.png">
+            <img src="images/4.png">
+            <ul>
+                <li class="active">暖色键盘</li>
+                <li>惬意时光</li>
+                <li>午后</li>
+                <li>一杯苦咖啡</li>
+            </ul>
+        </div>
+        <div>
+            <img src="images/5.png" style="display: block">
+            <img src="images/1.png">
+            <ul>
+                <li class="active">街边夕阳</li>
+                <li>金色稻草</li>
+            </ul>
+        </div>
+        <div>
+            <img src="images/2.png" style="display: block">
+            <img src="images/3.png">
+            <img src="images/4.png">
+            <img src="images/5.png">
+            <ul>
+                <li class="active">灰色通讯</li>
+                <li>咖啡'配'饼干</li>
+                <li>孤单键盘</li>
+                <li>枯树</li>
+            </ul>
+        </div>
+        <div>
+            <img src="images/1.png" style="display: block">
+            <img src="images/2.png">
+            <ul>
+                <li class="active">baby素材一</li>
+                <li>baby素材二</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+(function(){
+    var wrap=document.querySelector('.wrap');
+    var box=document.querySelector('#box');
+    var lis=box.querySelectorAll('.navs li');
+    var divs=box.querySelectorAll('div'); //获取显示div
+    var timer;
+    var navNum=0; //nav值
+    var num=0; //li值
+    move();
+    function move() {
+        var img=Array.from(divs[navNum].getElementsByTagName('img'));
+        var ul=divs[navNum].getElementsByTagName('ul')[0];
+        var li=Array.from(ul.children);
+        li.forEach((item,index)=>{
+            item.onmouseover = function(){
+                img.forEach((e,i)=>{
+                    li[i].className = e.className='';
+                });
+                img[index].className = item.className='active';
+                num = index;
+            }
+        });
+        timer=setInterval(function () {
+            for(var i=0;i<img.length;i++){
+                li[i].className='';
+                img[i].style.display='';
+            }
+            //说明下一个tab
+            if(num==img.length-1){
+                clearInterval(timer);//到下一页就关闭定时器
+                navNum++; //切tab
+                navNum%=lis.length;
+                num=0;
+                img[num].style.display='block';
+                li[num].className='active';
+                for(var i=0;i<lis.length;i++){
+                    divs[i].style.display=lis[i].className='';
+                }
+
+                lis[navNum].className='active';
+                divs[navNum].style.display='block';
+                move();
+            }else{
+                num++;
+                img[num].style.display='block';
+                li[num].className='active';
+            }
+        },1000)
+
+    }
+    
+    wrap.onmouseenter=function () {
+        clearInterval(timer);
+    }
+    
+    wrap.onmouseleave=function () {
+        move();
+    }
+
+})();
+</script>
+</body>
+</html>

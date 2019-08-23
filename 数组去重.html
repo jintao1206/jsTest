@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //循环去重
+    var arr = [1,'1',1,1,1,2,2,3,4,5,6,7,4,2,3,4];
+    /**
+     * 循环去重的第一种方法
+     */
+    //    var newArr=[];
+    //    for(var i=0;i<arr.length;i++){
+    //        if(newArr.indexOf(arr[i])===-1){
+    //            newArr.push(arr[i]);
+    //        }
+    //    }
+    /**
+     *  循环去重的另一种方法
+     */
+//    for(var i=0;i<arr.length;i++){
+//        for(var j=i+1;j<arr.length;j++){
+//            if(arr[i]==arr[j]){
+//                arr.splice(j,1);
+//                j--;
+//            }
+//        }
+//    }
+   // console.log(arr);
+    /**
+     * filter去重
+     */
+//    var newArr=arr.filter((item,index,arr)=>{
+//        return arr.indexOf(item)===index;
+//    })
+//    console.log(newArr);
+    /**
+     * 对象去重
+      */
+    var obj={};
+    for(var i=0;i<arr.length;i++){
+        obj[arr[i]]=arr[i];
+    }
+    for(var v in obj){
+        console.log(v)
+    }
+</script>
+</body>
+</html>

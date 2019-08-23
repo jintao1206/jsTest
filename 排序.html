@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+   //冒泡排序
+//   var arr = [2,40,93,12,39,11];
+//   var onOff=false;
+//   for (var i=0; i<arr.length; i++) {
+//       onOff=true;
+//       for (var j=0; j<arr.length-i; j++) {
+//           var a = arr[j]
+//           var b = arr[j+1]
+//           if (a > b) {
+//               [arr[j],arr[j+1]]=[b,a];
+//               onOff=false;
+////               var c=a;
+////               arr[j]=b;
+////               arr[j+1]=c;
+//           }
+//       }
+//       if(onOff){  //可以减少arr循环次数
+//           break;
+//       }
+//
+//       console.log(arr);
+//
+//   }
+   /// console.log(arr);
+
+   /**
+    * 快速排序
+    */
+   // 1 从数组中选取一个中间基点（middle base point），
+   // 2 把这个基点提取出来
+   // 3 让数组中剩余的数字依次和这个基点进行比较，比这个基点大的放到右侧数组，比这个基点小的放到左侧数组
+   // 4 对左右两侧数组，重复的执行上面的 1 、2 、3 直到排序完成
+   var arr = [1,66,36,10,83,35,68,25,20];
+   function quickSort(arr) {
+       if(arr.length<=1) return arr;
+       var middle=arr.splice((arr.length/2),1)[0];
+       var left=[];
+       var right=[];
+       while (arr.length){
+           if(arr[0]<middle){
+               left.push(arr.shift());
+           }else{
+               right.push(arr.shift());
+           }
+       }
+
+       return quickSort(left).concat(middle,quickSort(right));
+   }
+
+   console.log(quickSort(arr))
+</script>
+</body>
+</html>

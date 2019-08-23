@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .option .active {
+            background: red;
+        }
+        .inner div {
+            font-size: 100px;
+            display: none;
+        }
+        .inner .show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="tab">
+    <div class="option">
+        <button class="active">选项1</button>
+        <button>选项2</button>
+        <button>选项3</button>
+    </div>
+    <div class="inner">
+        <div  class="show">内容1</div>
+        <div>内容2</div>
+        <div>内容3</div>
+    </div>
+</div>
+<script>
+    var btns=document.querySelectorAll('.option button');
+    var inners=document.querySelectorAll('.inner div');
+    var now=0;
+    for(var i=0;i<btns.length;i++){
+        btns[i].index=i;
+        btns[i].onclick=tabs;
+    }
+
+
+    function tabs() {
+        //定点清除 先清除上次选中的
+        btns[now].classList.remove('active');
+        inners[now].classList.remove('show');
+
+
+//    for(var i=0;i<btns.length;i++){
+//        btns[i].classList.remove('active');
+//        inners[i].classList.remove("show");
+//    }
+        this.classList.add('active');
+        inners[this.index].classList.add('show');
+        now=this.index;
+    }
+
+</script>
+</body>
+</html>

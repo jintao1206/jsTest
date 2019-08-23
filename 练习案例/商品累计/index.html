@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <link rel="stylesheet" href="./index.css" />
+    
+  </head>
+  <body>
+    <div class="box">
+      <div class="container">
+        <ul id="list">
+          <li>
+            <div class="list-left">
+              <input type="button" class="minus" value="-" />
+              <span class="n">0</span>
+              <input type="button" class="plus" value="+" />
+            </div>
+            <div class="list-right">
+              <span>单价：</span>
+              <em class="price">12.5元</em>
+              <span>小计：</span>
+              <em class="count">0元</em>
+            </div>
+          </li>
+          <li>
+            <div class="list-left">
+              <input type="button" class="minus" value="-" />
+              <span class="n">0</span>
+              <input type="button" class="plus" value="+" />
+            </div>
+            <div class="list-right">
+              <span>单价：</span>
+              <em class="price">13.5元</em>
+              <span>小计：</span>
+              <em class="count">0元</em>
+            </div>
+          </li>
+          <li>
+            <div class="list-left">
+              <input type="button" class="minus" value="-" />
+              <span class="n">0</span>
+              <input type="button" class="plus" value="+" />
+            </div>
+            <div class="list-right">
+              <span>单价：</span>
+              <em class="price">14.5元</em>
+              <span>小计：</span>
+              <em class="count">0元</em>
+            </div>
+          </li>
+          <li>
+            <div class="list-left">
+              <input type="button" class="minus" value="-" />
+              <span class="n">0</span>
+              <input type="button" class="plus" value="+" />
+            </div>
+            <div class="list-right">
+              <span>单价：</span>
+              <em class="price">15.5元</em>
+              <span>小计：</span>
+              <em class="count">0元</em>
+            </div>
+          </li>
+          <li>
+            <div class="list-left">
+              <input type="button" class="minus" value="-" />
+              <span class="n">0</span>
+              <input type="button" class="plus" value="+" />
+            </div>
+            <div class="list-right">
+              <span>单价：</span>
+              <em class="price">16.5元</em>
+              <span>小计：</span>
+              <em class="count">0元</em>
+            </div>
+          </li>
+        </ul>
+        <p>商品合计共：<strong>0</strong>件，共花费了：<strong>0</strong>元</p>
+        <p>其中最贵的已选商品单价是：<strong>0</strong>元</p>
+      </div>
+    </div>
+  <script>
+    var plus=document.querySelectorAll('.plus'); //+
+    var minus=document.querySelectorAll('.minus'); //-
+    var nub=document.querySelectorAll('.n'); //数量
+    var price=document.querySelectorAll('.price'); //单价
+    var count=document.querySelectorAll('.count'); //小计
+    var strong=document.querySelectorAll('strong'); //列表下面的strong标签
+    for(var i=0;i<nub.length;i++){
+        //循环调用事件点击
+        totalPrice(i);
+    }
+
+    function totalPrice(index) {
+        plus[index].onclick=function () {
+            var num=++nub[index].innerHTML;
+            changeNum(num,index);
+        }
+        minus[index].onclick=function () {
+            var num=--nub[index].innerHTML;
+            if(num<0){
+                alert('不能为负数');
+                nub[index].innerHTML=0;
+                return;
+            }
+            changeNum(num,index);
+        }
+    }
+    
+    function changeNum(number,index) {
+        count[index].innerHTML=number*(parseFloat(price[index].innerHTML)).toFixed(2)+'元';
+        nub[index].innerHTML=number;
+        getTotalPrice();
+    }
+    
+    function getTotalPrice() {
+        var totalNum=0; //商品合计
+        var totalPrice=0; //商品总价
+        var max=0; //商品最贵单价
+        for(var i=0;i<nub.length;i++){
+            totalNum+=parseInt(nub[i].innerHTML);
+            totalPrice+=parseFloat(count[i].innerHTML);
+            if(nub[i].innerHTML!=0){
+                if(max<parseFloat(price[i].innerHTML)){
+                    max=parseFloat(price[i].innerHTML);
+                }
+            }
+        }
+        strong[0].innerHTML=totalNum;
+        strong[1].innerHTML=totalPrice;
+        strong[2].innerHTML=max;
+
+    }
+  </script>
+  </body>
+</html>

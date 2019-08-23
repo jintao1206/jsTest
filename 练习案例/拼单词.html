@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var str='get-element-by-id';
+    var str2='query-selector';
+    function convertWord(str) {
+        var arrStrs=str.split('-');
+        var newStr=arrStrs[0];
+        for(var i=1;i<arrStrs.length;i++){
+            newStr+=arrStrs[i][0].toUpperCase()+arrStrs[i].substring(1);
+        }
+        return newStr;
+    }
+
+    console.log(convertWord(str));
+    console.log(convertWord(str2));
+</script>
+</body>
+</html>

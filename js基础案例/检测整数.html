@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+
+
+    /**
+     * if(isNaN(val)  判断是否是合法数字,true代表不合法
+     * || String(parseInt(val)!==val))  //说明有小数
+     */
+
+    var arr = [
+        "100px",
+        "abc" - 6,
+        [],
+        -98765,
+        34,
+        -2,
+        0,
+        "300",
+        ,
+        function() {
+            alert(1);
+        },
+        null,
+        document,
+        [],
+        true,
+        "200px" - 30,
+        "23.45元",
+        5,
+        Number("abc"),
+        function() {
+            alert(3);
+        },
+        "xyz" - 90
+    ];
+   console.log(arr);
+    //    所有的数字：-98765,34,-2,0,5
+    //    可以转数字的是：100px,-98765,34,-2,0,300,23.45元,5
+    //    最大值是：300
+    //    NaN的位置是：1,14,17,19
+
+
+
+//    for(var i=0;i<arr.length;i++){
+//        //查找所有的数字
+////        if(typeof arr[i]=='number' && arr[i]==arr[i]){
+////            console.log(arr[i]);
+////        }
+//        //可以转数字
+//        if(!isNaN(parseFloat(arr[i]))){
+//        //if(parseFloat(arr[i]) || parseFloat(arr[i])==0){
+//            console.log(arr[i]);
+//        }
+//    }
+    //求最大值
+//    var maxNub=-Infinity;
+//    for(var i=0;i<arr.length;i++){
+//        var num=parseFloat(arr[i]);
+//        if(!isNaN(num) && maxNub<num){
+//           maxNub=num;
+//        }
+//
+//    }
+//    console.log(maxNub);
+
+
+    /**
+     * while  do while test
+     */
+    //    var arr=[10,20,30,50,46];
+//    var num=27;
+//    var i=0;
+//    do{
+//        console.log(arr);
+//        i++;
+//    }while(arr[i]>num)
+//    while (arr[i]<num){
+//        i++;
+//        if(arr[i]>num){
+//            console.log(arr[i]);
+//        }
+//    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /**
+     sort(function(n1,n2){
+        return 根据返回值，决定是否交互 n1 和 n2 的顺序
+            1. 大于等于 0 不颠倒位置
+            2. 小于 0 交互两个位置
+    })
+     */
+//    var arr = [4,11,5,31,222];
+//    arr.sort(function (n1,n2) {
+//        //return n1-n2; //从小到大排序
+//        //从大到小: n2 - n1;
+//        // 从大到小排序
+//        // console.log(n1,n2);
+//        // if(n1 > n2){
+//        //     return -1;
+//        // }
+//        // return 0;
+//        // 从小到大排序
+//        console.log(n1,n2);
+//        if(n1 > n2){
+//            return 0;
+//        }
+//        return -1;
+//    })
+//    console.log(arr);
+//    var arr=[10,100,44,66,78];
+//    var sum=arr.reduce(function (n1,n2) {
+//        return n1+n2;
+//    }) //求和
+//    console.log(sum);
+//    var max=arr.reduce(function (n1,n2) {
+//        return n1>n2?n1:n2;
+//    })
+//    console.log(max);
+
+
+    //获取n1-n2之间的随机数
+     //如果包含，使用round，不包含使用floor
+
+//    function getRandom(min,max) {
+//        return Math.round(Math.random()*(max-min)+min);
+//    }
+//    console.log(getRandom(2,17));
+    //写一个函数，输入一个数组a,找到里面是否存在三个不同的元素，
+    // 使得a[i] + a[j] == a[k]。如果能找到输出true,找不到输出false
+    var a1 = [1,5,10,25,9,17,100];
+    var a2 = [2,99,3,5];
+    var a3 = [1,50,0,5];
+    function search (arr) {
+        for(var i=0;i<arr.length;i++){
+            var left=arr[i];
+           for(var j=i+1;j<arr.length;j++){
+               var right = arr[j];
+               var k=arr.indexOf(left+right);
+               if(k>j) return true;
+           }
+        }
+        return false;
+    }
+
+    console.log(search(a1));
+  console.log(search(a2));
+   console.log(search(a3));
+</script>
+</body>
+</html>
