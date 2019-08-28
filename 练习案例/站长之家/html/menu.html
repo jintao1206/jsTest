@@ -286,26 +286,53 @@
     </div>
 </body>
 <script>
-    var nav = document.querySelector('#nav');
-    var lis = nav.querySelectorAll('li');
-    var subNav = nav.querySelectorAll('.float_layer');
+//    var nav = document.querySelector('#nav');
+//    var lis = nav.querySelectorAll('li');
+//    var subNav = nav.querySelectorAll('.float_layer');
+//    var timer;
+//    for(var i=0;i<lis.length;i++){
+//        lis[i].index=i;
+//        lis[i].onmouseover=function () {
+//            clearTimeout(timer);
+//            for(var j=0;j<subNav.length;j++){
+//                subNav[j].style.display='none';
+//            }
+//            subNav[this.index].style.display='block';
+//        }
+//        lis[i].onmouseout=function () {
+//            var __this=this;
+//            timer=setTimeout(function () {
+//                subNav[__this.index].style.display='none';
+//            },400);
+//
+//        }
+//    }
+</script>
+<script>
+    var list=document.querySelectorAll('#nav li');
     var timer;
-    for(var i=0;i<lis.length;i++){
-        lis[i].index=i;
-        lis[i].onmouseover=function () {
-            clearTimeout(timer);
-            for(var j=0;j<subNav.length;j++){
-                subNav[j].style.display='none';
-            }
-            subNav[this.index].style.display='block';
-        }
-        lis[i].onmouseout=function () {
-            var __this=this;
-            timer=setTimeout(function () {
-                subNav[__this.index].style.display='none';
-            },400);
-
-        }
-    }
+     list.forEach(function (item,index) {
+         var a=item.querySelector('a');
+         var floatLayer =item.querySelector(".float_layer");
+         a.onmouseover=function () {
+             list.forEach(function (item,index) {
+                 var a=item.querySelector('a');
+                 var floatLayer =item.querySelector(".float_layer");
+                 a.className='normal';
+                 floatLayer.style.display = "none";
+             })
+             a.className='active';
+             floatLayer.style.display = "block";
+         }
+         a.onmouseout=floatLayer.onmouseout=function () {
+             clearTimeout(timer);
+             timer=setTimeout(function () {
+                 floatLayer.style.display='none';
+             },300);
+         }
+         floatLayer.onmouseover = function(){
+             clearTimeout(timer);
+         };
+     })
 </script>
 </html>

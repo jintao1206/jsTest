@@ -81,57 +81,115 @@
       </div>
     </div>
   <script>
-    var plus=document.querySelectorAll('.plus'); //+
-    var minus=document.querySelectorAll('.minus'); //-
-    var nub=document.querySelectorAll('.n'); //数量
-    var price=document.querySelectorAll('.price'); //单价
-    var count=document.querySelectorAll('.count'); //小计
-    var strong=document.querySelectorAll('strong'); //列表下面的strong标签
-    for(var i=0;i<nub.length;i++){
-        //循环调用事件点击
-        totalPrice(i);
-    }
+//    var plus=document.querySelectorAll('.plus'); //+
+//    var minus=document.querySelectorAll('.minus'); //-
+//    var nub=document.querySelectorAll('.n'); //数量
+//    var price=document.querySelectorAll('.price'); //单价
+//    var count=document.querySelectorAll('.count'); //小计
+//    var strong=document.querySelectorAll('strong'); //列表下面的strong标签
+//    for(var i=0;i<nub.length;i++){
+//        //循环调用事件点击
+//        totalPrice(i);
+//    }
+//
+//    function totalPrice(index) {
+//        plus[index].onclick=function () {
+//            var num=++nub[index].innerHTML;
+//            changeNum(num,index);
+//        }
+//        minus[index].onclick=function () {
+//            var num=--nub[index].innerHTML;
+//            if(num<0){
+//                alert('不能为负数');
+//                nub[index].innerHTML=0;
+//                return;
+//            }
+//            changeNum(num,index);
+//        }
+//    }
+//
+//    function changeNum(number,index) {
+//        count[index].innerHTML=number*(parseFloat(price[index].innerHTML)).toFixed(2)+'元';
+//        nub[index].innerHTML=number;
+//        getTotalPrice();
+//    }
+//
+//    function getTotalPrice() {
+//        var totalNum=0; //商品合计
+//        var totalPrice=0; //商品总价
+//        var max=0; //商品最贵单价
+//        for(var i=0;i<nub.length;i++){
+//            totalNum+=parseInt(nub[i].innerHTML);
+//            totalPrice+=parseFloat(count[i].innerHTML);
+//            if(nub[i].innerHTML!=0){
+//                if(max<parseFloat(price[i].innerHTML)){
+//                    max=parseFloat(price[i].innerHTML);
+//                }
+//            }
+//        }
+//        strong[0].innerHTML=totalNum;
+//        strong[1].innerHTML=totalPrice;
+//        strong[2].innerHTML=max;
+//
+//    }
 
-    function totalPrice(index) {
-        plus[index].onclick=function () {
-            var num=++nub[index].innerHTML;
-            changeNum(num,index);
-        }
-        minus[index].onclick=function () {
-            var num=--nub[index].innerHTML;
-            if(num<0){
-                alert('不能为负数');
-                nub[index].innerHTML=0;
-                return;
-            }
-            changeNum(num,index);
-        }
-    }
-    
-    function changeNum(number,index) {
-        count[index].innerHTML=number*(parseFloat(price[index].innerHTML)).toFixed(2)+'元';
-        nub[index].innerHTML=number;
-        getTotalPrice();
-    }
-    
-    function getTotalPrice() {
-        var totalNum=0; //商品合计
-        var totalPrice=0; //商品总价
-        var max=0; //商品最贵单价
-        for(var i=0;i<nub.length;i++){
-            totalNum+=parseInt(nub[i].innerHTML);
-            totalPrice+=parseFloat(count[i].innerHTML);
-            if(nub[i].innerHTML!=0){
-                if(max<parseFloat(price[i].innerHTML)){
-                    max=parseFloat(price[i].innerHTML);
-                }
-            }
-        }
-        strong[0].innerHTML=totalNum;
-        strong[1].innerHTML=totalPrice;
-        strong[2].innerHTML=max;
 
-    }
+  </script>
+  <script>
+      var list = document.querySelectorAll("#list li");
+      var inners = document.querySelectorAll("p");
+      var strong=document.querySelectorAll('strong'); //列表下面的strong标签
+      list.forEach(function (item) {
+          var minus = item.querySelector(".minus");
+          var plus = item.querySelector(".plus");
+          var n = item.querySelector(".n");
+          var nub=Number(n.innerHTML);
+          var price = parseFloat(item.querySelector(".price").innerHTML);//单价
+          var count = item.querySelector(".count");
+          minus.onclick=function () {
+              if(nub<=0) return;
+              nub--;
+              reduce();
+          }
+          plus.onclick=function () {
+             nub++;
+              reduce();
+          }
+          function reduce() {
+              n.innerHTML=nub;
+              count.innerHTML = nub*price + "元";
+              total();
+          }
+          function total() {
+             var count=[];
+             var prices=[];
+             var totalPrices=[];
+             list.forEach(function (item) {
+                 var n = item.querySelector(".n");
+                 var nub = Number(n.innerHTML); //每一件商品的件数
+                 if(nub>0){
+                     var price = parseFloat(item.querySelector(".price").innerHTML);
+                     count.push(nub);
+                     prices.push(price);
+                     totalPrices.push(nub*price);
+                 }
+             })
+
+              var totalCount=count.reduce(function (n1,n2) {
+                  return n1+n2;
+              },0)
+              var totalPrice=totalPrices.reduce(function (n1,n2) {
+                  return n1+n2;
+              },0)
+              var maxPrice=prices.reduce(function (n1,n2) {
+                  return Math.max(n1,n2);
+              })
+              strong[0].innerHTML=totalCount;
+              strong[1].innerHTML=totalPrice;
+              strong[2].innerHTML=maxPrice;
+
+          }
+      })
   </script>
   </body>
 </html>
